@@ -43,4 +43,6 @@ Week beginning - 02/11/2020
 + Added Model,Repository & Service files to folders.
 + Added Interfaces for Repositories, Helpers & Services.
 + Added .gitignore
++ Added Controllers
+- Removed sample Controller
 ```
