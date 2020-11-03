@@ -24,5 +24,7 @@ All information in this README is subject to change. Check back for updates.
 ### Progress
 Week beginning - 02/11/2020
 ```diff
-+ Added file structure to project
++ Added file structure to project.
++ Added Model,Repository & Service files to folders.
++ Added Interfaces for Repositories, Helpers & Services.
 ```
