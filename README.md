@@ -21,10 +21,16 @@ All information in this README is subject to change. Check back for updates.
 |          |              | amount                 |
 
 ***
+### How it Works
+![alt text](https://github.com/TheStarryNight1889/budget/tree/main/md_images/fyp_flow.png "sample post flow")
+
+
+***
 ### Progress
 Week beginning - 02/11/2020
 ```diff
 + Added file structure to project.
 + Added Model,Repository & Service files to folders.
 + Added Interfaces for Repositories, Helpers & Services.
++ Added .gitignore
 ```
