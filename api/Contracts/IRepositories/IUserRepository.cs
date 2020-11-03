@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace api.Contracts.IRepositories
 {
-    public class IUserRepository
+    public interface IUserRepository
     {
     }
 }

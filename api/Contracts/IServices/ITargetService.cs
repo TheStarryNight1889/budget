@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace api.Contracts.IServices
 {
-    public class ITargetService
+    public interface ITargetService
     {
     }
 }

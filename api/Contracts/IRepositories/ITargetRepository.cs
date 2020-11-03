@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace api.Contracts.IRepositories
 {
-    public class ITargetRepository
+    public interface ITargetRepository
     {
     }
 }

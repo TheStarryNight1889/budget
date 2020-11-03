@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace api.Contracts.IHelpers
 {
-    public class IAuthentication
+    public interface IAuthentication
     {
     }
 }
