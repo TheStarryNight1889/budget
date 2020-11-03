@@ -8,3 +8,13 @@ C:\Users\mollo\Documents\LIT\Final Year Project\budget\api\obj\Debug\netcoreapp3
 C:\Users\mollo\Documents\LIT\Final Year Project\budget\api\obj\Debug\netcoreapp3.1\api.RazorTargetAssemblyInfo.cache
 C:\Users\mollo\Documents\LIT\Final Year Project\budget\api\obj\Debug\netcoreapp3.1\staticwebassets\api.StaticWebAssets.Manifest.cache
 C:\Users\mollo\Documents\LIT\Final Year Project\budget\api\obj\Debug\netcoreapp3.1\staticwebassets\api.StaticWebAssets.xml
+C:\Users\mollo\Documents\LIT\Final Year Project\budget\api\bin\Debug\netcoreapp3.1\api.deps.json
+C:\Users\mollo\Documents\LIT\Final Year Project\budget\api\bin\Debug\netcoreapp3.1\api.runtimeconfig.json
+C:\Users\mollo\Documents\LIT\Final Year Project\budget\api\bin\Debug\netcoreapp3.1\api.runtimeconfig.dev.json
+C:\Users\mollo\Documents\LIT\Final Year Project\budget\api\bin\Debug\netcoreapp3.1\api.dll
+C:\Users\mollo\Documents\LIT\Final Year Project\budget\api\bin\Debug\netcoreapp3.1\api.pdb
+C:\Users\mollo\Documents\LIT\Final Year Project\budget\api\obj\Debug\netcoreapp3.1\api.csproj.CoreCompileInputs.cache
+C:\Users\mollo\Documents\LIT\Final Year Project\budget\api\obj\Debug\netcoreapp3.1\api.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\mollo\Documents\LIT\Final Year Project\budget\api\obj\Debug\netcoreapp3.1\api.dll
+C:\Users\mollo\Documents\LIT\Final Year Project\budget\api\obj\Debug\netcoreapp3.1\api.pdb
+C:\Users\mollo\Documents\LIT\Final Year Project\budget\api\obj\Debug\netcoreapp3.1\api.genruntimeconfig.cache
