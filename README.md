@@ -3,6 +3,7 @@ By Christie Molloy
 
 ## What is LaBudget?
 LaBudget is an implemntaion of an API for managing finances and providing spending insights. Accompanied with the API is a front-end made with Vue.js.
+All information in this README is subject to change. Check back for updates.
 
 ***
 ### Database structure (mogodb)
