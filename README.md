@@ -19,6 +19,7 @@ All information in this README is subject to change. Check back for updates.
 |          | category     | date\_offset\_progress |
 |          |              | goal\_met              |
 |          |              | amount                 |
+|          |              | name                   |
 
 ***
 ### How it Works
@@ -43,4 +44,6 @@ Week beginning - 02/11/2020
 + Added Model,Repository & Service files to folders.
 + Added Interfaces for Repositories, Helpers & Services.
 + Added .gitignore
++ Added Controllers
+- Removed sample Controller
 ```
