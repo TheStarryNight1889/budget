@@ -46,4 +46,5 @@ Week beginning - 02/11/2020
 + Added .gitignore
 + Added Controllers
 - Removed sample Controller
++ Added database conection functionality
 ```
