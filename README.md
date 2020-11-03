@@ -19,3 +19,10 @@ All information in this README is subject to change. Check back for updates.
 |          | category     | date\_offset\_progress |
 |          |              | goal\_met              |
 |          |              | amount                 |
+
+***
+### Progress
+Week beginning - 02/11/2020
+```diff
++ Added file structure to project
+```
