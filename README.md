@@ -23,8 +23,9 @@ All information in this README is subject to change. Check back for updates.
 ***
 ### How it Works
 
-![Sample Flow](https://github.com/TheStarryNight1889/budget/blob/main/md_images/fyp_flow.png "sample post flow")
+Simple System Flow:
 
+![Application Flow](https://github.com/TheStarryNight1889/budget/blob/main/md_images/Capture.PNG "sample post flow")
 
 ***
 ### Progress
