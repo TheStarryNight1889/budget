@@ -28,6 +28,14 @@ Simple System Flow:
 ![Application Flow](https://github.com/TheStarryNight1889/budget/blob/main/md_images/Capture.PNG "sample post flow")
 
 ***
+### Technologies Used
+
++ .NET Core 3.1
++ Vue.js
++ npm
++ Docker
+
+***
 ### Progress
 Week beginning - 02/11/2020
 ```diff
