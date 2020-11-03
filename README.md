@@ -22,7 +22,8 @@ All information in this README is subject to change. Check back for updates.
 
 ***
 ### How it Works
-![alt text](https://github.com/TheStarryNight1889/budget/tree/main/md_images/fyp_flow.png "sample post flow")
+
+![Sample Flow](https://github.com/TheStarryNight1889/budget/blob/main/md_images/fyp_flow.png "sample post flow")
 
 
 ***
