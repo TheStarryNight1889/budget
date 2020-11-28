@@ -55,3 +55,9 @@ Week beginning - 02/11/2020
 - Removed sample Controller
 + Added database conection functionality
 ```
+
+Week beginning - 23/11/2020
+```diff
++ Added xd wireframes
++ Changed database connection. in line with .NET DOCS now.
+```
