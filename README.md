@@ -5,6 +5,13 @@ By Christie Molloy
 LaBudget is an implemntaion of an API for managing finances and providing spending insights. Accompanied with the API is a front-end made with Vue.js.
 All information in this README is subject to change. Check back for updates.
 
+## What does LaBudget achieve?
+- Create savings targets and track progress.
+- Track outgoing capital.
+- Track inncoming capital.
+- Provide unique financial insights (e.g. spending more than you should on entertainment, luxury goods etc...)
+- Send reminders when charges will be added to your accounts.
+
 ***
 ### Database structure (mogodb)
 | USERS    | TRANSACTIONS | TARGETS                |
@@ -46,4 +53,5 @@ Week beginning - 02/11/2020
 + Added .gitignore
 + Added Controllers
 - Removed sample Controller
++ Added database conection functionality
 ```
