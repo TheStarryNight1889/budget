@@ -61,3 +61,8 @@ Week beginning - 23/11/2020
 + Added xd wireframes
 + Changed database connection. in line with .NET DOCS now.
 ```
+
+Week beginning - 04/01/2021
+```diff
++ Added orm features to User
+```
