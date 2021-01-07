@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace api.Contracts.IModels
 {
-    public interface IBudgetDatabaseSettings
+    public interface IBudgetDataBaseSettings
     {
         string UsersCollectionName { get; set; }
         string ConnectionString { get; set; }
