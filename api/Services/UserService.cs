@@ -19,14 +19,18 @@ namespace api.Services
         }
         public JObject GetAll()
         {
-            JObject json = new JObject();
-            json["users"] = JToken.FromObject(_userRepository.Get());
+            JObject json = new JObject
+            {
+                ["users"] = JToken.FromObject(_userRepository.Get())
+            };
             return json;
         }
         public JObject Get(string id)
         {
-            JObject json = new JObject();
-            json["users"] = JToken.FromObject(_userRepository.Get(id));
+            JObject json = new JObject
+            {
+                ["users"] = JToken.FromObject(_userRepository.Get(id))
+            };
             return json;
         }
         public void Create(JObject user)
