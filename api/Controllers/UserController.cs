@@ -15,6 +15,10 @@ namespace api.Controllers
     public class UserController : ControllerBase
     {
         private readonly UserService _userService;
+        public UserController(UserService userService)
+        {
+            this._userService = userService;
+        }
         // GET: api/<UserController>
         [HttpGet]
         public IActionResult Get()

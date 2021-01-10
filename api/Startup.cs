@@ -15,6 +15,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
+using api.Services;
+using api.Contracts.IRepositories;
+using api.Repositories;
 
 namespace api
 {
@@ -36,6 +39,9 @@ namespace api
             services.AddSingleton<IBudgetDataBaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<BudgetDataBaseSettings>>().Value);
 
+            services.AddSingleton<UserService>();
+
+            services.AddTransient<IRepository<UserModel, UserModel>, UserRepository>();
             services.AddControllers().AddNewtonsoftJson();
             services.AddSwaggerGen(c =>
             {

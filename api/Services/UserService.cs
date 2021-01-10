@@ -29,7 +29,7 @@ namespace api.Services
         {
             JObject json = new JObject
             {
-                ["users"] = JToken.FromObject(_userRepository.Get(id))
+                ["user"] = JToken.FromObject(_userRepository.Get(id))
             };
             return json;
         }
@@ -39,7 +39,9 @@ namespace api.Services
         }
         public void Update(string id, JObject user)
         {
-            _userRepository.Update(id, UserFactory(user));
+            UserModel nu = UserFactory(user);
+            nu.id = id;
+            _userRepository.Update(id, nu);
         }
         public void Remove(JObject user)
         {
@@ -54,7 +56,7 @@ namespace api.Services
         {
             UserModel nu = new UserModel(
                 user.GetValue("name").ToString(),
-                Convert.ToDateTime(user.GetValue("dob")),
+                DateTime.ParseExact(user.GetValue("dob").ToString(), "dd/MM/yyyy",null),
                 user.GetValue("email").ToString(),
                 user.GetValue("password").ToString(),
                 (Currency)Convert.ToInt32(user.GetValue("currency"))
