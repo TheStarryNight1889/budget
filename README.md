@@ -38,7 +38,7 @@ Simple System Flow:
 ***
 ### Technologies Used
 
-+ .NET Core 3.1
++ .NET 5.0
 + Vue.js
 + npm
 + Docker
@@ -65,4 +65,6 @@ Week beginning - 23/11/2020
 Week beginning - 04/01/2021
 ```diff
 + Added orm features to User
++ Upgraded to .NET 5.0
++ Fully implemented all CRUD operations for User
 ```
