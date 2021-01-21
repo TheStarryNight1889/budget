@@ -1,4 +1,5 @@
 ﻿using api.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 using System;
@@ -15,45 +16,52 @@ namespace api.Controllers
     public class UserController : ControllerBase
     {
         private readonly UserService _userService;
+        private readonly System.Security.Claims.ClaimsPrincipal _currentUser;
         public UserController(UserService userService)
         {
             this._userService = userService;
+            this._currentUser = this.User;
         }
         // GET: api/<UserController>
         [HttpGet]
-        public IActionResult Get()
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> Get()
         {
                 return Ok(_userService.GetAll());
         }
 
         // GET api/<UserController>/5
-        [HttpGet("{id}")]
-        public IActionResult Get(string id)
+        [HttpGet("{email}")]
+        [Authorize(Roles = "user,admin")]
+        public async Task<IActionResult> Get(string email)
         {
-            return Ok(_userService.Get(id));
+            return Ok(_userService.Get(email));
         }
 
         // POST api/<UserController>
         [HttpPost]
-        public IActionResult Post([FromBody] JObject user)
+        [AllowAnonymous]
+        public async Task<IActionResult> Post([FromBody] JObject user)
         {
             _userService.Create(user);
             return Ok();
         }
 
         // PUT api/<UserController>/5
-        [HttpPut("{id}")]
-        public IActionResult Put(string id, [FromBody] JObject user)
+        [HttpPut("{email}")]
+        [Authorize(Roles = "user,admin")]
+        public async Task<IActionResult> Put(string email, [FromBody] JObject user)
         {
-            _userService.Update(id, user);
+            _userService.Update(email, user);
             return Ok();
         }
 
         // DELETE api/<UserController>/5
-        [HttpDelete("{id}")]
-        public IActionResult Delete(string id)
+        [HttpDelete("{email}")]
+        [Authorize(Roles = "user,admin")]
+        public async Task<IActionResult> Delete(string email)
         {
-            _userService.Remove(id);
+            _userService.Remove(email);
             return Ok();
         }
     }

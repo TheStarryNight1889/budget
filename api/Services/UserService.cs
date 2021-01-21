@@ -25,11 +25,11 @@ namespace api.Services
             };
             return json;
         }
-        public JObject Get(string id)
+        public JObject Get(string email)
         {
             JObject json = new JObject
             {
-                ["user"] = JToken.FromObject(_userRepository.Get(id))
+                ["user"] = JToken.FromObject(_userRepository.Get(email))
             };
             return json;
         }
@@ -37,26 +37,35 @@ namespace api.Services
         {
             _userRepository.Create(UserFactory(user));
         }
-        public void Update(string id, JObject user)
+        public void Update(string email, JObject user)
         {
             UserModel nu = UserFactory(user);
-            nu.id = id;
-            _userRepository.Update(id, nu);
+            nu.id = user.GetValue("id").ToString();
+            nu.email = email;
+            _userRepository.Update(email, nu);
         }
         public void Remove(JObject user)
         {
             _userRepository.Remove(UserFactory(user));
         }
-        public void Remove(string id)
+        public void Remove(string email)
         {
-            _userRepository.Remove(id);
+            _userRepository.Remove(email);
         }
 
+        public UserModel Authenticate(JObject credentials)
+        {
+            UserModel user = _userRepository.Get(credentials.GetValue("email").ToString());
+
+            if (user != null && user.password == credentials.GetValue("password").ToString())
+                return user;
+            else return null;
+        }
         public UserModel UserFactory(JObject user)
         {
             UserModel nu = new UserModel(
                 user.GetValue("name").ToString(),
-                DateTime.ParseExact(user.GetValue("dob").ToString(), "dd/MM/yyyy",null),
+                DateTime.ParseExact(user.GetValue("dob").ToString(), "dd/MM/yyyy", provider: null),
                 user.GetValue("email").ToString(),
                 user.GetValue("password").ToString(),
                 (Currency)Convert.ToInt32(user.GetValue("currency"))

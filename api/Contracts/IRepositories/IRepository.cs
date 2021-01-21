@@ -12,7 +12,7 @@ namespace api.Contracts.IRepositories
         public List<T> Get();
         public T Get(string id);
         public void Create(U obj);
-        public void Update(string id, U obj);
+        public void Update(string email, U obj);
         public void Remove(U obj);
         public void Remove(string id);
     }
