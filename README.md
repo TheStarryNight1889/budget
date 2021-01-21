@@ -68,3 +68,16 @@ Week beginning - 04/01/2021
 + Upgraded to .NET 5.0
 + Fully implemented all CRUD operations for User
 ```
+Week beginning - 11/01/2021
+```diff
++ Added Authentication
++ Added Authorization
++ Added Token system
++ Added Swagger
+```
+Week beginning - 18/01/2021
+```diff
++ Made code truly asyncronous 
++ Added Integration Test project
++ Added Integration Tests
+```
