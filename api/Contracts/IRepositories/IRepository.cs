@@ -9,11 +9,11 @@ namespace api.Contracts.IRepositories
         where T : class
         where U : class
     {
-        public List<T> Get();
-        public T Get(string id);
-        public void Create(U obj);
-        public void Update(string email, U obj);
-        public void Remove(U obj);
-        public void Remove(string id);
+        public Task<List<T>> Get();
+        public Task<T> Get(string id);
+        public Task Create(U obj);
+        public Task Update(string email, U obj);
+        public Task Remove(U obj);
+        public Task Remove(string id);
     }
 }

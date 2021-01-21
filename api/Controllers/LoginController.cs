@@ -24,7 +24,7 @@ namespace api.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<dynamic>> Authenticate([FromBody] JObject credentials)
         {
-           var user = _userService.Authenticate(credentials);
+           var user = await _userService.Authenticate(credentials);
 
            if (user == null)
             {
@@ -33,7 +33,7 @@ namespace api.Controllers
             else
             {
                 var token = TokenService.CreateToken(user);
-                user.password = "";
+                user.Password = "";
 
                 JObject json = new JObject
                 {

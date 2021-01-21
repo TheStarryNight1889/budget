@@ -27,7 +27,7 @@ namespace api.Controllers
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> Get()
         {
-                return Ok(_userService.GetAll());
+                return Ok(await _userService.GetAll());
         }
 
         // GET api/<UserController>/5
@@ -35,7 +35,7 @@ namespace api.Controllers
         [Authorize(Roles = "user,admin")]
         public async Task<IActionResult> Get(string email)
         {
-            return Ok(_userService.Get(email));
+            return Ok(await _userService.Get(email));
         }
 
         // POST api/<UserController>
@@ -43,7 +43,7 @@ namespace api.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Post([FromBody] JObject user)
         {
-            _userService.Create(user);
+            await _userService.Create(user);
             return Ok();
         }
 
@@ -52,7 +52,7 @@ namespace api.Controllers
         [Authorize(Roles = "user,admin")]
         public async Task<IActionResult> Put(string email, [FromBody] JObject user)
         {
-            _userService.Update(email, user);
+            await _userService.Update(email, user);
             return Ok();
         }
 
@@ -61,7 +61,7 @@ namespace api.Controllers
         [Authorize(Roles = "user,admin")]
         public async Task<IActionResult> Delete(string email)
         {
-            _userService.Remove(email);
+            await _userService.Remove(email);
             return Ok();
         }
     }

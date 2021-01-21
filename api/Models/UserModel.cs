@@ -11,21 +11,21 @@ namespace api.Models
     {
         [BsonId]
         [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
-        public string id { get; set; }
-        public string email { get; set; }
-        public string name { get; set; }
-        public DateTime dob { get; set; }
-        public string password { get; set; }
-        public Currency currency { get; set; }
+        public string Id { get; set; }
+        public string Email { get; set; }
+        public string Name { get; set; }
+        public DateTime DOB { get; set; }
+        public string Password { get; set; }
+        public Currency Currency { get; set; }
         public string Role { get; set; }
 
         public UserModel(string name, DateTime dob, string email, string password, Currency currency)
         {
-            this.name = name;
-            this.dob = dob;
-            this.email = email;
-            this.password = password;
-            this.currency = currency;
+            this.Name = name;
+            this.DOB = dob;
+            this.Email = email;
+            this.Password = password;
+            this.Currency = currency;
         }
     }
 }

@@ -17,47 +17,47 @@ namespace api.Services
         {
             this._userRepository = userRepository;
         }
-        public JObject GetAll()
+        public async Task<JObject> GetAll()
         {
             JObject json = new JObject
             {
-                ["users"] = JToken.FromObject(_userRepository.Get())
+                ["users"] = JToken.FromObject(await _userRepository.Get())
             };
             return json;
         }
-        public JObject Get(string email)
+        public async Task<JObject> Get(string email)
         {
             JObject json = new JObject
             {
-                ["user"] = JToken.FromObject(_userRepository.Get(email))
+                ["user"] = JToken.FromObject(await _userRepository.Get(email))
             };
             return json;
         }
-        public void Create(JObject user)
+        public async Task Create(JObject user)
         {
-            _userRepository.Create(UserFactory(user));
+            await _userRepository.Create(UserFactory(user));
         }
-        public void Update(string email, JObject user)
+        public async Task Update(string email, JObject user)
         {
             UserModel nu = UserFactory(user);
-            nu.id = user.GetValue("id").ToString();
-            nu.email = email;
-            _userRepository.Update(email, nu);
+            nu.Id = user.GetValue("id").ToString();
+            nu.Email = email;
+            await _userRepository.Update(email, nu);
         }
-        public void Remove(JObject user)
+        public async Task Remove(JObject user)
         {
-            _userRepository.Remove(UserFactory(user));
+            await _userRepository.Remove(UserFactory(user));
         }
-        public void Remove(string email)
+        public async Task Remove(string email)
         {
-            _userRepository.Remove(email);
+            await _userRepository.Remove(email);
         }
 
-        public UserModel Authenticate(JObject credentials)
+        public async Task<UserModel> Authenticate(JObject credentials)
         {
-            UserModel user = _userRepository.Get(credentials.GetValue("email").ToString());
+            UserModel user = await _userRepository.Get(credentials.GetValue("email").ToString());
 
-            if (user != null && user.password == credentials.GetValue("password").ToString())
+            if (user != null && user.Password == credentials.GetValue("password").ToString())
                 return user;
             else return null;
         }

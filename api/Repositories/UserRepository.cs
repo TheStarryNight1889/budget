@@ -21,16 +21,16 @@ namespace api.Repositories
             _users = database.GetCollection<UserModel>(settings.UsersCollectionName);
         }
 
-        public List<UserModel> Get() => _users.Find(book => true).ToList();
+        public async Task<List<UserModel>> Get() => (List<UserModel>)await _users.FindAsync(book => true);
 
-        public UserModel Get(string email) => _users.Find<UserModel>(user => user.email == email).FirstOrDefault();
+        public async Task<UserModel> Get(string email) => (UserModel)await _users.FindAsync<UserModel>(user => user.Email == email);
 
-        public void Create(UserModel user) => _users.InsertOne(user);
+        public async Task Create(UserModel user) => await _users.InsertOneAsync(user);
 
-        public void Update(string email, UserModel userIn) => _users.ReplaceOne(user => user.email == email, userIn);
+        public async Task Update(string email, UserModel userIn) => await _users.ReplaceOneAsync(user => user.Email == email, userIn);
 
-        public void Remove(UserModel userIn) => _users.DeleteOne(user => user.email == userIn.email);
+        public async Task Remove(UserModel userIn) => await _users.DeleteOneAsync(user => user.Email == userIn.Email);
 
-        public void Remove(string email) => _users.DeleteOne(user => user.email == email);
+        public async Task Remove(string email) => await _users.DeleteOneAsync(user => user.Email == email);
     }
 }
