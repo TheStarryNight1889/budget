@@ -5,6 +5,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -22,7 +23,7 @@ namespace api.Controllers
             this._userService = userService;
             this._currentUser = this.User;
         }
-        // GET: api/<UserController>
+
         [HttpGet]
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> Get()
@@ -30,7 +31,6 @@ namespace api.Controllers
                 return Ok(await _userService.GetAll());
         }
 
-        // GET api/<UserController>/5
         [HttpGet("{email}")]
         [Authorize(Roles = "user,admin")]
         public async Task<IActionResult> Get(string email)
@@ -38,16 +38,30 @@ namespace api.Controllers
             return Ok(await _userService.Get(email));
         }
 
-        // POST api/<UserController>
         [HttpPost]
         [AllowAnonymous]
         public async Task<IActionResult> Post([FromBody] JObject user)
         {
-            await _userService.Create(user);
+            if(user.GetValue("email").ToString() == "")
+            {
+                return BadRequest();
+            }
+
+            JObject u = await _userService.Get(user.GetValue("email").ToString());
+
+            if(u.GetValue("email") == user.GetValue("email"))
+            {
+                return Conflict();
+            }
+
+            try
+            {
+                await _userService.Create(user);
+            }
+            catch(Exception e) { Console.WriteLine("POST USER EXCEPTION:\n " + e.ToString()); return BadRequest(); }
             return Ok();
         }
 
-        // PUT api/<UserController>/5
         [HttpPut("{email}")]
         [Authorize(Roles = "user,admin")]
         public async Task<IActionResult> Put(string email, [FromBody] JObject user)

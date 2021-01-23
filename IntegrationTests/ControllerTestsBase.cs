@@ -17,6 +17,7 @@ namespace IntegrationTests
 
         //TestData
         public JObject NewUserValid = JObject.Parse(File.ReadAllText(@"../../../TestData/NewUserValid.json"));
+        public JObject NewUserBadRequest = JObject.Parse(File.ReadAllText(@"../../../TestData/NewUserBadRequest.json"));
         public ControllerTestsBase(WebApplicationFactory<api.Startup> fixture)
         {
             _client = fixture.CreateClient();
