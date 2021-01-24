@@ -1,32 +1,29 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div class="border w-full py-4 px-4 bg-green-500" id="nav">
+      <router-link
+        class="hover:bg-green-300 text-white text-2xl border-white border-2 rounded-lg px-2 py-1 mx-2 text-center"
+        to="/"
+        >Home</router-link
+      >
+      <router-link
+        class="hover:bg-green-300 text-white text-2xl border-white border-2 rounded-lg px-2 py-1 mx-2 text-center"
+        to="/about"
+        >About</router-link
+      >
+      <div class="float-right">
+        <router-link
+          class="text-white hover:bg-green-300 text-2xl border-white border-2 rounded-lg px-2 py-1 mx-2 text-center"
+          to="/register"
+          >Register</router-link
+        >
+        <router-link
+          class="hover:bg-green-300 text-white text-2xl border-white border-2 rounded-lg px-2 py-1 mx-2 text-center"
+          to="/login"
+          >Login</router-link
+        >
+      </div>
     </div>
     <router-view />
   </div>
 </template>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
