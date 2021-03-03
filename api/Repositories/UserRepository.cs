@@ -21,9 +21,9 @@ namespace api.Repositories
             _users = database.GetCollection<UserModel>(settings.UsersCollectionName);
         }
 
-        public async Task<List<UserModel>> Get() => (List<UserModel>)await _users.FindAsync(book => true);
+        public async Task<List<UserModel>> Get() => (List<UserModel>)await _users.FindAsync(user => true);
 
-        public async Task<UserModel> Get(string email) => (UserModel)await _users.FindAsync<UserModel>(user => user.Email == email);
+        public async Task<UserModel> Get(string email) => (UserModel)await _users.Find(user => user.Email == email).SingleAsync<UserModel>();
 
         public async Task Create(UserModel user) => await _users.InsertOneAsync(user);
 

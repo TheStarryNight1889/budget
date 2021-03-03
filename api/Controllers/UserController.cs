@@ -42,24 +42,23 @@ namespace api.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Post([FromBody] JObject user)
         {
-            if(user.GetValue("email").ToString() == "")
+            try
+            {
+                string email = user.GetValue("email").ToString();
+
+                if (await _userService.Get(email) == null)
+                {
+                   await _userService.Create(user);
+                   return Ok();
+                }
+                else
+                    return Conflict();
+
+            } catch(Exception e)
             {
                 return BadRequest();
             }
 
-            JObject u = await _userService.Get(user.GetValue("email").ToString());
-
-            if(u.GetValue("email") == user.GetValue("email"))
-            {
-                return Conflict();
-            }
-
-            try
-            {
-                await _userService.Create(user);
-            }
-            catch(Exception e) { Console.WriteLine("POST USER EXCEPTION:\n " + e.ToString()); return BadRequest(); }
-            return Ok();
         }
 
         [HttpPut("{email}")]

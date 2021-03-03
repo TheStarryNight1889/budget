@@ -32,5 +32,23 @@ namespace IntegrationTests
             var response = await _client.PostAsync("/api/User", new StringContent(NewUserBadRequest.ToString(), Encoding.UTF8, "application/json"));
             response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         }
+        [Fact]
+        public async Task Get_All_Users_Unauthorized_No_User()
+        {
+            var response = await _client.GetAsync("/api/User");
+            response.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
+        }
+        [Fact]
+        public async Task Get_All_Users_Unauthorized_User()
+        {
+            var response = await _client.GetAsync("/api/User");
+            response.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
+        }
+        [Fact]
+        public async Task Get_All_Users_Authorized_Admin()
+        {
+            var response = await _client.GetAsync("/api/User");
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+        }
     }
 }

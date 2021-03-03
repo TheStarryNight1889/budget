@@ -19,23 +19,44 @@ namespace api.Services
         }
         public async Task<JObject> GetAll()
         {
-            JObject json = new JObject
+            try
             {
-                ["users"] = JToken.FromObject(await _userRepository.Get())
-            };
-            return json;
+                JObject json = new JObject
+                {
+                    ["users"] = JToken.FromObject(await _userRepository.Get())
+                };
+                return json;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
         }
         public async Task<JObject> Get(string email)
         {
-            JObject json = new JObject
+            try
             {
-                ["user"] = JToken.FromObject(await _userRepository.Get(email))
-            };
-            return json;
+                var user = await _userRepository.Get(email);
+
+                JObject json = new JObject
+                {
+                    ["user"] = JToken.FromObject(user)
+                };
+                return json;
+            }
+            catch(Exception e)
+            {
+                //Console.WriteLine(e);
+                return null;
+            }
+
         }
         public async Task Create(JObject user)
         {
-            await _userRepository.Create(UserFactory(user));
+            UserModel userModel = UserFactory(user);
+            userModel.Role = "user";
+            await _userRepository.Create(userModel);
         }
         public async Task Update(string email, JObject user)
         {
@@ -65,7 +86,7 @@ namespace api.Services
         {
             UserModel nu = new UserModel(
                 user.GetValue("name").ToString(),
-                DateTime.ParseExact(user.GetValue("dob").ToString(), "dd/MM/yyyy", provider: null),
+                DateTime.ParseExact(user.GetValue("dob").ToString(), "yyyy-MM-dd", provider: null),
                 user.GetValue("email").ToString(),
                 user.GetValue("password").ToString(),
                 (Currency)Convert.ToInt32(user.GetValue("currency"))

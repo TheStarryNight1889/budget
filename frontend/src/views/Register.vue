@@ -3,7 +3,7 @@
     class="register shadow-lg container my-20 mx-auto px-20 py-20 rounded-lg border-2"
   >
     <h1 class="text-left text-4xl">Registration Page</h1>
-    <form class="flex flex-col py-10" v-on:submit.prevent="submitForm">
+    <form class="flex flex-col py-10" v-on:submit.prevent="register()">
       <label class="text-left py-4" for="name">Name:</label>
       <input
         class="rounded-lg border-2 py-2 px-2"
@@ -56,6 +56,32 @@
 <script>
 export default {
   name: "Register",
-  components: {}
+  data() {
+    return {
+      name: this.name,
+      email: this.email,
+      dob: this.dob,
+      currency: this.currency,
+      password: this.password
+    };
+  },
+  components: {},
+  methods: {
+    async register() {
+      try {
+        await this.$http
+          .post("/User", {
+            name: this.name,
+            email: this.email,
+            dob: this.dob,
+            currency: this.currency,
+            password: this.password
+          })
+          .then(response => response.data);
+      } catch (err) {
+        this.error = err.message;
+      }
+    }
+  }
 };
 </script>

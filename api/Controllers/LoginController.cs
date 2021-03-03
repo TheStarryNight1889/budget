@@ -23,15 +23,11 @@ namespace api.Controllers
         [HttpPost]
         [AllowAnonymous]
         public async Task<ActionResult<dynamic>> Authenticate([FromBody] JObject credentials)
-        {
-           var user = await _userService.Authenticate(credentials);
+        {   
+            try
+            {
+                var user = await _userService.Authenticate(credentials);
 
-           if (user == null)
-            {
-                return NotFound();
-            }
-            else
-            {
                 var token = TokenService.CreateToken(user);
                 user.Password = "";
 
@@ -41,6 +37,10 @@ namespace api.Controllers
                     ["token"] = token
                 };
                 return Ok(json);
+            }
+            catch(Exception e)
+            {
+                return BadRequest();
             }
         }
     }
