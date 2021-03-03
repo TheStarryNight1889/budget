@@ -80,4 +80,10 @@ Week beginning - 18/01/2021
 + Made code truly asyncronous 
 + Added Integration Test project
 + Added Integration Tests
++ Began work on front end.
++ Created Vue.js boilerplate
++ Added navigation
++ Added Home page
++ Added Register page
++ Added Login page
 ```
