@@ -87,3 +87,9 @@ Week beginning - 18/01/2021
 + Added Register page
 + Added Login page
 ```
+Week beginning - 01/03/2021
+```diff
++ Login functionality working on front end
++ Register functionality working on front end
++ Integrations tests added
+```
