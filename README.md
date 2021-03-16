@@ -14,19 +14,18 @@ All information in this README is subject to change. Check back for updates.
 
 ***
 ### Database structure (mogodb)
-| USERS    | TRANSACTIONS | TARGETS                |
-|----------|--------------|------------------------|
-| id       | id           | id                     |
-| name     | user\_id     | user\_id               |
-| dob      | amount       | creation\_date         |
-| email    | date         | goal\_end\_date        |
-| password | reoccuring   | end\_date              |
-| currency | day/date     | type                   |
-|          | frequency    | goal                   |
-|          | category     | date\_offset\_progress |
-|          |              | goal\_met              |
-|          |              | amount                 |
-|          |              | name                   |
+| USERS      | TRANSACTIONS | RECURRING\_TRANSACTIONS | ACCOUNTS                    |
+| ---------- | ------------ | ----------------------- | --------------------------- |
+| id         | id           | id                      | id                          |
+| name       | amount       | name                    | user\_id                    |
+| dob        | date         | amount                  | name                        |
+| email      | category     | recurring\_frequency    | type                        |
+| password   | name         | recurring\_date         | default                     |
+| currency   | store        | category                | balance                     |
+| {ACCOUNTS} | goods        | type                    | color                       |
+|            |              |                         | last\_updated               |
+|            |              |                         | \[TRANSACTION\_IDS\]        |
+|            |              |                         | \[RECURRING\_TRANSACTIONS\] |
 
 ***
 ### How it Works
@@ -92,4 +91,8 @@ Week beginning - 01/03/2021
 + Login functionality working on front end
 + Register functionality working on front end
 + Integrations tests added
+```
+Week beginning - 08/03/2021
+```diff
++ Updated table structure
 ```
