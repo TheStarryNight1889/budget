@@ -14,18 +14,18 @@ All information in this README is subject to change. Check back for updates.
 
 ***
 ### Database structure (mogodb)
-| USERS      | TRANSACTIONS | RECURRING\_TRANSACTIONS | ACCOUNTS                    | TARGETS                |
-| ---------- | ------------ | ----------------------- | --------------------------- | ---------------------- |
-| id         | id           | id                      | id                          | id                     |
-| name       | amount       | name                    | user\_id                    | creation\_date         |
-| dob        | date         | amount                  | name                        | expected\_end\_date    |
-| email      | category     | recurring\_frequency    | type                        | actual\_end\_date      |
-| password   | name         | recurring\_date         | default                     | goal                   |
-| currency   | store        | category                | balance                     | date\_offset\_progress |
-| {ACCOUNTS} | goods        | type                    | color                       | goal\_met              |
-|            |              |                         | last\_updated               | amount                 |
-|            |              |                         | \[TRANSACTION\_IDS\]        | name                   |
-|            |              |                         | \[RECURRING\_TRANSACTIONS\] |                        |
+| USERS           | TRANSACTIONS | RECURRING\_TRANSACTIONS | ACCOUNTS                    | TARGETS                |
+| --------------- | ------------ | ----------------------- | --------------------------- | ---------------------- |
+| id              | id           | id                      | id                          | id                     |
+| name            | amount       | name                    | user\_id                    | creation\_date         |
+| dob             | date         | amount                  | name                        | expected\_end\_date    |
+| email           | category     | recurring\_frequency    | type                        | actual\_end\_date      |
+| password        | name         | recurring\_date         | default                     | goal                   |
+| currency        | store        | category                | balance                     | date\_offset\_progress |
+| {ACCOUNTS}      | goods        | type                    | color                       | goal\_met              |
+| \[TARGET\_IDS\] |              |                         | last\_updated               | amount                 |
+|                 |              |                         | \[TRANSACTION\_IDS\]        | name                   |
+|                 |              |                         | \[RECURRING\_TRANSACTIONS\] |                        |
 
 ***
 ### How it Works
