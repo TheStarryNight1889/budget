@@ -419,3 +419,6 @@ C:\Users\mollo\Documents\LIT\Final Year Project\budget\IntegrationTests\bin\Debu
 C:\Users\mollo\Documents\LIT\Final Year Project\budget\IntegrationTests\bin\Debug\netcoreapp5.0\api.pdb
 C:\Users\mollo\Documents\LIT\Final Year Project\budget\IntegrationTests\bin\Debug\netcoreapp5.0\System.Net.Http.Formatting.dll
 C:\Users\mollo\Documents\LIT\Final Year Project\budget\IntegrationTests\bin\Debug\netcoreapp5.0\System.Web.Http.dll
+C:\Users\mollo\Documents\LIT\Final Year Project\budget\IntegrationTests\bin\Debug\netcoreapp5.0\api.deps.json
+C:\Users\mollo\Documents\LIT\Final Year Project\budget\IntegrationTests\bin\Debug\netcoreapp5.0\api.runtimeconfig.json
+C:\Users\mollo\Documents\LIT\Final Year Project\budget\IntegrationTests\bin\Debug\netcoreapp5.0\api.runtimeconfig.dev.json
