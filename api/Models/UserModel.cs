@@ -18,6 +18,8 @@ namespace api.Models
         public string Password { get; set; }
         public Currency Currency { get; set; }
         public string Role { get; set; }
+        public List<AccountModel> Accounts { get ; set; }
+        public List<string> TargetIds { get; set; }
 
         public UserModel(string name, DateTime dob, string email, string password, Currency currency)
         {
