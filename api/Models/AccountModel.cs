@@ -20,8 +20,10 @@ namespace api.Models
         public Dictionary<DateTime, double> DateOffsetBalance { get; set; }
         public AccountColor Color { get; set; }
         public DateTime LastUpdated { get; set; }
+        public List<string> TransactionIds { get; set; }
+        public List<string> RecurringTransactionIds { get; set; }
 
-        public AccountModel(string userId, string name, AccountType type, bool @default, double balance, Dictionary<DateTime, double> dateOffsetBalance, AccountColor color, DateTime lastUpdated)
+        public AccountModel(string userId, string name, AccountType type, bool @default, double balance, Dictionary<DateTime, double> dateOffsetBalance, AccountColor color, DateTime lastUpdated, List<string> transactionIds, List<string> recurringTransactionIds)
         {
             UserId = userId;
             Name = name;
@@ -31,6 +33,8 @@ namespace api.Models
             DateOffsetBalance = dateOffsetBalance;
             Color = color;
             LastUpdated = lastUpdated;
+            TransactionIds = transactionIds;
+            RecurringTransactionIds = recurringTransactionIds;
         }
     }
 }
