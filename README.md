@@ -19,12 +19,13 @@ All information in this README is subject to change. Check back for updates.
 | id              | id           | id                      | id                          | id                     |
 | name            | amount       | name                    | user\_id                    | creation\_date         |
 | dob             | date         | amount                  | name                        | expected\_end\_date    |
-| email           | category     | recurring\_frequency    | type                        | actual\_end\_date      |
-| password        | name         | recurring\_date         | default                     | goal                   |
-| currency        | store        | category                | balance                     | date\_offset\_progress |
-| {ACCOUNTS}      | goods        | type                    | color                       | goal\_met              |
-| \[TARGET\_IDS\] |              |                         | last\_updated               | amount                 |
-|                 |              |                         | \[TRANSACTION\_IDS\]        | name                   |
+| email           | category     | recurring\_date         | type                        | actual\_end\_date      |
+| password        | name         | category                | default                     | goal                   |
+| currency        | store        | type                    | date\_offset\_balance       | date\_offset\_progress |
+| {ACCOUNTS}      | goods        |                         | balance                     | goal\_met              |
+| \[TARGET\_IDS\] |              |                         | color                       | amount                 |
+|                 |              |                         | last\_updated               | name                   |
+|                 |              |                         | \[TRANSACTION\_IDS\]        |                        |
 |                 |              |                         | \[RECURRING\_TRANSACTIONS\] |                        |
 
 ***
