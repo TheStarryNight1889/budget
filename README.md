@@ -97,3 +97,8 @@ Week beginning - 08/03/2021
 ```diff
 + Updated table structure
 ```
+Week beginning - 15/03/2021
+```diff
++ Added models according to db structure
++ Added enums according to models
+```
