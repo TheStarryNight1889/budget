@@ -88,7 +88,7 @@ namespace api.Services
 
         public async Task<UserModel> Authenticate(JObject credentials)
         {
-            UserModel user = await _userRepository.Get(credentials.GetValue("email").ToString());
+            UserModel user = await _userRepository.GetByEmail(credentials.GetValue("email").ToString());
 
             if (user != null && user.Password == credentials.GetValue("password").ToString())
                 return user;
