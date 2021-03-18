@@ -11,9 +11,9 @@ namespace api.Services
 {
     public class UserService
     {
-        private readonly IRepository<UserModel,UserModel> _userRepository;
+        private readonly IUserRepository _userRepository;
 
-        public UserService(IRepository<UserModel,UserModel> userRepository)
+        public UserService(IUserRepository userRepository)
         {
             this._userRepository = userRepository;
         }
@@ -33,11 +33,11 @@ namespace api.Services
                 return null;
             }
         }
-        public async Task<JObject> Get(string email)
+        public async Task<JObject> Get(string id)
         {
             try
             {
-                var user = await _userRepository.Get(email);
+                var user = await _userRepository.Get(id);
 
                 JObject json = new JObject
                 {
@@ -52,26 +52,38 @@ namespace api.Services
             }
 
         }
+        public async Task<bool> IsEmailIsAvailable(string email)
+        {
+            try
+            {
+                await _userRepository.GetByEmail(email);
+                return false;
+            }
+            catch(Exception e)
+            {
+                return true;
+            }
+        }
         public async Task Create(JObject user)
         {
             UserModel userModel = UserFactory(user);
             userModel.Role = "user";
             await _userRepository.Create(userModel);
         }
-        public async Task Update(string email, JObject user)
+        public async Task Update(string id, JObject user)
         {
             UserModel nu = UserFactory(user);
             nu.Id = user.GetValue("id").ToString();
-            nu.Email = email;
-            await _userRepository.Update(email, nu);
+
+            await _userRepository.Update(id, nu);
         }
         public async Task Remove(JObject user)
         {
             await _userRepository.Remove(UserFactory(user));
         }
-        public async Task Remove(string email)
+        public async Task Remove(string id)
         {
-            await _userRepository.Remove(email);
+            await _userRepository.Remove(id);
         }
 
         public async Task<UserModel> Authenticate(JObject credentials)
@@ -82,16 +94,22 @@ namespace api.Services
                 return user;
             else return null;
         }
+        public async Task CreateAccount(string id, JObject account)
+        {
+            UserModel User = await _userRepository.Get(id);
+            User.Accounts.Add(AccountFactory(account));
+
+            await _userRepository.Update(User.Email, User);
+        }
         public UserModel UserFactory(JObject user)
         {
-            UserModel nu = new UserModel(
-                user.GetValue("name").ToString(),
-                DateTime.ParseExact(user.GetValue("dob").ToString(), "yyyy-MM-dd", provider: null),
-                user.GetValue("email").ToString(),
-                user.GetValue("password").ToString(),
-                (Currency)Convert.ToInt32(user.GetValue("currency"))
-                );
-            return nu;
+            UserModel User = user.ToObject<UserModel>();
+            return User;
+        }
+        public AccountModel AccountFactory(JObject account)
+        {
+            AccountModel Account = account.ToObject<AccountModel>();
+            return Account;
         }
     }
 }

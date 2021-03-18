@@ -12,7 +12,7 @@ namespace api.Contracts.IRepositories
         public Task<List<T>> Get();
         public Task<T> Get(string id);
         public Task Create(U obj);
-        public Task Update(string email, U obj);
+        public Task Update(string id, U obj);
         public Task Remove(U obj);
         public Task Remove(string id);
     }

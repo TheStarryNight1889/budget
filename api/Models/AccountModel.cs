@@ -23,7 +23,7 @@ namespace api.Models
         public List<string> TransactionIds { get; set; }
         public List<string> RecurringTransactionIds { get; set; }
 
-        public AccountModel(string userId, string name, AccountType type, bool @default, double balance, Dictionary<DateTime, double> dateOffsetBalance, AccountColor color, DateTime lastUpdated, List<string> transactionIds, List<string> recurringTransactionIds)
+        public AccountModel(string userId, string name, AccountType type, bool @default, double balance, Dictionary<DateTime, double> dateOffsetBalance, AccountColor color, DateTime lastUpdated)
         {
             UserId = userId;
             Name = name;
@@ -33,8 +33,8 @@ namespace api.Models
             DateOffsetBalance = dateOffsetBalance;
             Color = color;
             LastUpdated = lastUpdated;
-            TransactionIds = transactionIds;
-            RecurringTransactionIds = recurringTransactionIds;
+            TransactionIds = new List<string>();
+            RecurringTransactionIds = new List<string>();
         }
     }
 }

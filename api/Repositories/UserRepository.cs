@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace api.Repositories
 {
-    public class UserRepository : IRepository<UserModel, UserModel>
+    public class UserRepository : IUserRepository
     {
         private readonly IMongoCollection<UserModel> _users;
 
@@ -23,14 +23,16 @@ namespace api.Repositories
 
         public async Task<List<UserModel>> Get() => (List<UserModel>)await _users.FindAsync(user => true);
 
-        public async Task<UserModel> Get(string email) => (UserModel)await _users.Find(user => user.Email == email).SingleAsync<UserModel>();
+        public async Task<UserModel> Get(string id) => await _users.Find(user => user.Id == id).SingleAsync<UserModel>();
+
+        public async Task<UserModel> GetByEmail(string email) => await _users.Find(user => user.Email == email).SingleAsync<UserModel>();
 
         public async Task Create(UserModel user) => await _users.InsertOneAsync(user);
 
-        public async Task Update(string email, UserModel userIn) => await _users.ReplaceOneAsync(user => user.Email == email, userIn);
+        public async Task Update(string id, UserModel userIn) => await _users.ReplaceOneAsync(user => user.Id == id, userIn);
 
         public async Task Remove(UserModel userIn) => await _users.DeleteOneAsync(user => user.Email == userIn.Email);
 
-        public async Task Remove(string email) => await _users.DeleteOneAsync(user => user.Email == email);
+        public async Task Remove(string id) => await _users.DeleteOneAsync(user => user.Id == id);
     }
 }

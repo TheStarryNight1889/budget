@@ -56,7 +56,7 @@ namespace api
 
             services.AddSingleton<UserService>();
 
-            services.AddTransient<IRepository<UserModel, UserModel>, UserRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
             services.AddControllers().AddNewtonsoftJson();
             services.AddSwaggerGen(c =>
             {

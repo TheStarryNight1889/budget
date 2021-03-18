@@ -31,11 +31,11 @@ namespace api.Controllers
                 return Ok(await _userService.GetAll());
         }
 
-        [HttpGet("{email}")]
+        [HttpGet("{id}")]
         [Authorize(Roles = "user,admin")]
-        public async Task<IActionResult> Get(string email)
+        public async Task<IActionResult> Get([FromRoute] string id)
         {
-            return Ok(await _userService.Get(email));
+            return Ok(await _userService.Get(id));
         }
 
         [HttpPost]
@@ -44,9 +44,9 @@ namespace api.Controllers
         {
             try
             {
-                string email = user.GetValue("email").ToString();
+                string email = user.GetValue("Email").ToString();
 
-                if (await _userService.Get(email) == null)
+                if (await _userService.IsEmailIsAvailable(email))
                 {
                    await _userService.Create(user);
                    return Ok();
@@ -61,21 +61,39 @@ namespace api.Controllers
 
         }
 
-        [HttpPut("{email}")]
+        [HttpPut("{id}")]
         [Authorize(Roles = "user,admin")]
-        public async Task<IActionResult> Put(string email, [FromBody] JObject user)
+        public async Task<IActionResult> Put(string id, [FromBody] JObject user)
         {
-            await _userService.Update(email, user);
+            await _userService.Update(id, user);
             return Ok();
         }
 
         // DELETE api/<UserController>/5
-        [HttpDelete("{email}")]
+        [HttpDelete("{id}")]
         [Authorize(Roles = "user,admin")]
-        public async Task<IActionResult> Delete(string email)
+        public async Task<IActionResult> Delete(string id)
         {
-            await _userService.Remove(email);
+            await _userService.Remove(id);
             return Ok();
+        }
+
+        [Route("/account/{id}")]
+        [HttpPost]
+        [Authorize(Roles ="user,admin")]
+        public async Task<IActionResult> PostAccount([FromRoute] string id,[FromBody] JObject account)
+        {
+            try
+            {
+                await _userService.CreateAccount(id, account);
+
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+
         }
     }
 }

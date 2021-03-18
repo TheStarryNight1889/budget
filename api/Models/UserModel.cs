@@ -28,6 +28,8 @@ namespace api.Models
             this.Email = email;
             this.Password = password;
             this.Currency = currency;
+            this.Accounts = new List<AccountModel>();
+            this.TargetIds = new List<string>();
         }
     }
 }
