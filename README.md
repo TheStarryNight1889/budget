@@ -101,4 +101,11 @@ Week beginning - 15/03/2021
 ```diff
 + Added models according to db structure
 + Added enums according to models
++ Added stuff for creating accounts.
++ Refactored User operations to use ID instead of email.
++ Added GetByEmail operation for user.
+```
+Week beginning - 22/03/2021
+```diff
++ 
 ```
