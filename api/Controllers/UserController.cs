@@ -78,7 +78,7 @@ namespace api.Controllers
             return Ok();
         }
 
-        [Route("/account/{id}")]
+        [Route("account/{id}")]
         [HttpPost]
         [Authorize(Roles ="user,admin")]
         public async Task<IActionResult> PostAccount([FromRoute] string id,[FromBody] JObject account)
@@ -94,6 +94,23 @@ namespace api.Controllers
                 return BadRequest();
             }
 
+        }
+
+        [Route("account/{id}")]
+        [HttpDelete]
+        [Authorize(Roles ="user,admin")]
+        public async Task<IActionResult> DeleteAccount([FromRoute] string id, [FromBody] JObject account)
+        {
+            try
+            {
+                await _userService.DeleteAccount(id, account);
+
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
         }
     }
 }

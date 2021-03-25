@@ -99,7 +99,20 @@ namespace api.Services
             UserModel User = await _userRepository.Get(id);
             User.Accounts.Add(AccountFactory(account));
 
-            await _userRepository.Update(User.Email, User);
+            await _userRepository.Update(id, User);
+        }
+        public async Task DeleteAccount(string id, JObject account)
+        {
+            UserModel User = await _userRepository.Get(id);
+            
+            foreach(AccountModel accountModel in User.Accounts)
+            {
+                if (accountModel.Id == AccountFactory(account).Id)
+                {
+                    account = null;
+                }
+            }
+            await _userRepository.Update(id, User);
         }
         public UserModel UserFactory(JObject user)
         {
