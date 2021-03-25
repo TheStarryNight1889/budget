@@ -107,5 +107,5 @@ Week beginning - 15/03/2021
 ```
 Week beginning - 22/03/2021
 ```diff
-+ 
++ Added delete account functionality
 ```
