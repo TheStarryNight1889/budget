@@ -105,3 +105,7 @@ Week beginning - 15/03/2021
 + Refactored User operations to use ID instead of email.
 + Added GetByEmail operation for user.
 ```
+Week beginning - 22/03/2021
+```diff
++ 
+```
