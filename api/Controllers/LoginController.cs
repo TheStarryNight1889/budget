@@ -1,4 +1,5 @@
 ﻿using api.Helpers;
+using api.Models;
 using api.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -22,7 +23,7 @@ namespace api.Controllers
         }
         [HttpPost]
         [AllowAnonymous]
-        public async Task<ActionResult<dynamic>> Authenticate([FromBody] JObject credentials)
+        public async Task<ActionResult<dynamic>> Authenticate(CredentialsModel credentials)
         {   
             try
             {

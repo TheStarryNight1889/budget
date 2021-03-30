@@ -1,4 +1,5 @@
-﻿using api.Services;
+﻿using api.Models;
+using api.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
@@ -17,22 +18,20 @@ namespace api.Controllers
     public class UserController : ControllerBase
     {
         private readonly UserService _userService;
-        private readonly System.Security.Claims.ClaimsPrincipal _currentUser;
         public UserController(UserService userService)
         {
             this._userService = userService;
-            this._currentUser = this.User;
         }
 
         [HttpGet]
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> Get()
         {
-                return Ok(await _userService.GetAll());
+            return Ok(await _userService.GetAll());
         }
 
         [HttpGet("{id}")]
-        [Authorize(Roles = "user,admin")]
+        //[Authorize(Roles = "user,admin")]
         public async Task<IActionResult> Get([FromRoute] string id)
         {
             return Ok(await _userService.Get(id));
@@ -40,30 +39,22 @@ namespace api.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Post([FromBody] JObject user)
+        public async Task<IActionResult> Post(UserModel user)
         {
-            try
+            if (!await _userService.IsEmailIsAvailable(user.Email))
             {
-                string email = user.GetValue("Email").ToString();
-
-                if (await _userService.IsEmailIsAvailable(email))
-                {
-                   await _userService.Create(user);
-                   return Ok();
-                }
-                else
-                    return Conflict();
-
-            } catch(Exception e)
-            {
-                return BadRequest();
+                return Conflict();
             }
-
+            else
+            {
+                await _userService.Create(user);
+                return Ok();
+            }
         }
 
         [HttpPut("{id}")]
         [Authorize(Roles = "user,admin")]
-        public async Task<IActionResult> Put(string id, [FromBody] JObject user)
+        public async Task<IActionResult> Put(string id, UserModel user)
         {
             await _userService.Update(id, user);
             return Ok();
@@ -81,36 +72,19 @@ namespace api.Controllers
         [Route("account/{id}")]
         [HttpPost]
         [Authorize(Roles ="user,admin")]
-        public async Task<IActionResult> PostAccount([FromRoute] string id,[FromBody] JObject account)
+        public async Task<IActionResult> PostAccount([FromRoute] string id, AccountModel account)
         {
-            try
-            {
-                await _userService.CreateAccount(id, account);
-
-                return Ok();
-            }
-            catch (Exception e)
-            {
-                return BadRequest();
-            }
-
+            await _userService.CreateAccount(id, account);
+            return Ok();
         }
 
-        [Route("account/{id}")]
+        [Route("/{id}/account/{accountId}")]
         [HttpDelete]
         [Authorize(Roles ="user,admin")]
-        public async Task<IActionResult> DeleteAccount([FromRoute] string id, [FromBody] JObject account)
+        public async Task<IActionResult> DeleteAccount([FromRoute] string id, [FromRoute] string accountId)
         {
-            try
-            {
-                await _userService.DeleteAccount(id, account);
-
-                return Ok();
-            }
-            catch (Exception e)
-            {
-                return BadRequest();
-            }
+            await _userService.DeleteAccount(id, accountId);
+            return Ok();
         }
     }
 }

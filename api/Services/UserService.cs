@@ -64,54 +64,44 @@ namespace api.Services
                 return true;
             }
         }
-        public async Task Create(JObject user)
+        public async Task Create(UserModel user)
         {
-            UserModel userModel = user.ToObject<UserModel>();
-            userModel.Role = "user";
-            await _userRepository.Create(userModel);
+            user.Role = "user";
+            await _userRepository.Create(user);
         }
-        public async Task Update(string id, JObject user)
+        public async Task Update(string id, UserModel user)
         {
-            UserModel nu = user.ToObject<UserModel>();
-            nu.Id = user.GetValue("id").ToString();
-
-            await _userRepository.Update(id, nu);
+            await _userRepository.Update(id, user);
         }
-        public async Task Remove(JObject user)
+        public async Task Remove(UserModel user)
         {
-            await _userRepository.Remove(user.ToObject<UserModel>());
+            await _userRepository.Remove(user);
         }
         public async Task Remove(string id)
         {
             await _userRepository.Remove(id);
         }
 
-        public async Task<UserModel> Authenticate(JObject credentials)
+        public async Task<UserModel> Authenticate(CredentialsModel credentials)
         {
-            UserModel user = await _userRepository.GetByEmail(credentials.GetValue("email").ToString());
+            UserModel user = await _userRepository.GetByEmail(credentials.Email);
 
-            if (user != null && user.Password == credentials.GetValue("password").ToString())
+            if (user != null && user.Password == credentials.Password)
                 return user;
             else return null;
         }
-        public async Task CreateAccount(string id, JObject account)
+        public async Task CreateAccount(string id, AccountModel account)
         {
             UserModel User = await _userRepository.Get(id);
-            User.Accounts.Add(account.ToObject<AccountModel>());
+            User.Accounts.Add(account);
 
             await _userRepository.Update(id, User);
         }
-        public async Task DeleteAccount(string id, JObject account)
+        public async Task DeleteAccount(string id, string accountId)
         {
             UserModel User = await _userRepository.Get(id);
-            
-            foreach(AccountModel accountModel in User.Accounts)
-            {
-                if (accountModel.Id == account.ToObject<AccountModel>().Id)
-                {
-                    account = null;
-                }
-            }
+
+            User.Accounts.Remove(User.Accounts.Where(a => a.Id == accountId).First());
             await _userRepository.Update(id, User);
         }
     }
