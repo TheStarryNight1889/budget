@@ -21,6 +21,12 @@ namespace IntegrationTests
             response.StatusCode.Should().Be(HttpStatusCode.OK);
         }
         [Fact]
+        public async Task Post_Account_OK()
+        {
+            var response = await _client.PostAsync("/api/User", new StringContent(NewUserValid.ToString(), Encoding.UTF8, "application/json"));
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+        }
+        [Fact]
         public async Task Post_User_BadRequest()
         {
             var response = await _client.PostAsync("/api/User", new StringContent(NewUserBadRequest.ToString(), Encoding.UTF8, "application/json"));

@@ -66,20 +66,20 @@ namespace api.Services
         }
         public async Task Create(JObject user)
         {
-            UserModel userModel = UserFactory(user);
+            UserModel userModel = user.ToObject<UserModel>();
             userModel.Role = "user";
             await _userRepository.Create(userModel);
         }
         public async Task Update(string id, JObject user)
         {
-            UserModel nu = UserFactory(user);
+            UserModel nu = user.ToObject<UserModel>();
             nu.Id = user.GetValue("id").ToString();
 
             await _userRepository.Update(id, nu);
         }
         public async Task Remove(JObject user)
         {
-            await _userRepository.Remove(UserFactory(user));
+            await _userRepository.Remove(user.ToObject<UserModel>());
         }
         public async Task Remove(string id)
         {
@@ -97,7 +97,7 @@ namespace api.Services
         public async Task CreateAccount(string id, JObject account)
         {
             UserModel User = await _userRepository.Get(id);
-            User.Accounts.Add(AccountFactory(account));
+            User.Accounts.Add(account.ToObject<AccountModel>());
 
             await _userRepository.Update(id, User);
         }
@@ -107,22 +107,12 @@ namespace api.Services
             
             foreach(AccountModel accountModel in User.Accounts)
             {
-                if (accountModel.Id == AccountFactory(account).Id)
+                if (accountModel.Id == account.ToObject<AccountModel>().Id)
                 {
                     account = null;
                 }
             }
             await _userRepository.Update(id, User);
-        }
-        public UserModel UserFactory(JObject user)
-        {
-            UserModel User = user.ToObject<UserModel>();
-            return User;
-        }
-        public AccountModel AccountFactory(JObject account)
-        {
-            AccountModel Account = account.ToObject<AccountModel>();
-            return Account;
         }
     }
 }
