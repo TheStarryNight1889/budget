@@ -31,7 +31,7 @@ namespace api.Controllers
         }
 
         [HttpGet("{id}")]
-        //[Authorize(Roles = "user,admin")]
+        [Authorize(Roles = "user,admin")]
         public async Task<IActionResult> Get([FromRoute] string id)
         {
             return Ok(await _userService.Get(id));
@@ -60,7 +60,6 @@ namespace api.Controllers
             return Ok();
         }
 
-        // DELETE api/<UserController>/5
         [HttpDelete("{id}")]
         [Authorize(Roles = "user,admin")]
         public async Task<IActionResult> Delete(string id)

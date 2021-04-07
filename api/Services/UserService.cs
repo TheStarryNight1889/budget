@@ -17,40 +17,13 @@ namespace api.Services
         {
             this._userRepository = userRepository;
         }
-        public async Task<JObject> GetAll()
+        public async Task<List<UserModel>> GetAll()
         {
-            try
-            {
-                JObject json = new JObject
-                {
-                    ["users"] = JToken.FromObject(await _userRepository.Get())
-                };
-                return json;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return null;
-            }
+            return await _userRepository.Get();
         }
-        public async Task<JObject> Get(string id)
+        public async Task<UserModel> Get(string id)
         {
-            try
-            {
-                var user = await _userRepository.Get(id);
-
-                JObject json = new JObject
-                {
-                    ["user"] = JToken.FromObject(user)
-                };
-                return json;
-            }
-            catch(Exception e)
-            {
-                //Console.WriteLine(e);
-                return null;
-            }
-
+            return await _userRepository.Get(id);
         }
         public async Task<bool> IsEmailIsAvailable(string email)
         {

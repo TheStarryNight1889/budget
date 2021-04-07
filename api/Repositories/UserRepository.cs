@@ -21,7 +21,7 @@ namespace api.Repositories
             _users = database.GetCollection<UserModel>(settings.UsersCollectionName);
         }
 
-        public async Task<List<UserModel>> Get() => (List<UserModel>)await _users.FindAsync(user => true);
+        public async Task<List<UserModel>> Get() => await _users.Find(user => true).ToListAsync();
 
         public async Task<UserModel> Get(string id) => await _users.Find(user => user.Id == id).SingleAsync<UserModel>();
 
@@ -31,7 +31,7 @@ namespace api.Repositories
 
         public async Task Update(string id, UserModel userIn) => await _users.ReplaceOneAsync(user => user.Id == id, userIn);
 
-        public async Task Remove(UserModel userIn) => await _users.DeleteOneAsync(user => user.Email == userIn.Email);
+        public async Task Remove(UserModel userIn) => await _users.DeleteOneAsync(user => user.Id == userIn.Id);
 
         public async Task Remove(string id) => await _users.DeleteOneAsync(user => user.Id == id);
     }
