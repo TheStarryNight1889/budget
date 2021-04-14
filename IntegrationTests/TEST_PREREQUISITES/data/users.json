@@ -1,0 +1,36 @@
+[
+  {
+    "_id" : { "$oid":"6075da01584e8e5f34a41261" },
+    "Email" : "perm@123.com",
+    "Name" : "Test User",
+    "DOB" : {"$date":"2000-01-22T00:00:00.000Z"},
+    "Password" : "test123",
+    "Currency" : 0,
+    "Role" : "user",
+    "Wallets" : [ 
+        {
+            "_id" : { "$oid":"6075f4127017be83a95d3b3c" },
+            "Name" : "AIB Checking",
+            "Type" : 1,
+            "Default" : true,
+            "Balance" : 200.0,
+            "DateOffsetBalance" : null,
+            "Color" : 0,
+            "LastUpdated" : {"$date":"2021-04-13T22:41:00.000Z"},
+            "RecurringTransactionIds" : []
+        },
+        {
+          "_id" : { "$oid":"7085f4127017be83a95d3b3c" },
+          "Name" : "This Gets Changed",
+          "Type" : 1,
+          "Default" : true,
+          "Balance" : 200.0,
+          "DateOffsetBalance" : null,
+          "Color" : 0,
+          "LastUpdated" : {"$date":"2021-04-13T22:41:00.000Z"},
+          "RecurringTransactionIds" : []
+      }
+    ],
+    "TargetIds" : []
+  }
+]

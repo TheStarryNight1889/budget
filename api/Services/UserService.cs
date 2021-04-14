@@ -44,6 +44,9 @@ namespace api.Services
         }
         public async Task Update(string id, UserModel user)
         {
+            UserModel oldUser = await _userRepository.Get(id);
+            user.Wallets = oldUser.Wallets;
+            user.Role = "user";
             await _userRepository.Update(id, user);
         }
         public async Task Remove(UserModel user)
@@ -62,20 +65,6 @@ namespace api.Services
             if (user != null && user.Password == credentials.Password)
                 return user;
             else return null;
-        }
-        public async Task CreateAccount(string id, AccountModel account)
-        {
-            UserModel User = await _userRepository.Get(id);
-            User.Accounts.Add(account);
-
-            await _userRepository.Update(id, User);
-        }
-        public async Task DeleteAccount(string id, string accountId)
-        {
-            UserModel User = await _userRepository.Get(id);
-
-            User.Accounts.Remove(User.Accounts.Where(a => a.Id == accountId).First());
-            await _userRepository.Update(id, User);
         }
     }
 }

@@ -23,6 +23,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Cors;
 using System.Web.Http;
+using Microsoft.AspNetCore.Http;
 
 namespace api
 {
@@ -55,6 +56,8 @@ namespace api
                 sp.GetRequiredService<IOptions<BudgetDataBaseSettings>>().Value);
 
             services.AddSingleton<UserService>();
+            services.AddSingleton<WalletService>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddControllers().AddNewtonsoftJson();
@@ -115,7 +118,7 @@ namespace api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {

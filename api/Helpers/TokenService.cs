@@ -12,7 +12,7 @@ namespace api.Helpers
 {
     public static class TokenService
     {
-        private const double EXPIRE_HOURS = 168; //7 days
+        private const double EXPIRE_HOURS = 168; // 7 days
         public static string CreateToken(UserModel user)
         {
             var key = Encoding.ASCII.GetBytes(Settings.Secret);
@@ -21,7 +21,7 @@ namespace api.Helpers
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Email, user.Email.ToString()),
+                    new Claim(ClaimTypes.NameIdentifier, user._id.ToString()),
                     new Claim(ClaimTypes.Role, user.Role.ToString())
                 }),
                 Expires = DateTime.UtcNow.AddHours(EXPIRE_HOURS),

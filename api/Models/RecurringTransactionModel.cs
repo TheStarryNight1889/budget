@@ -11,7 +11,7 @@ namespace api.Models
     {
         [BsonId]
         [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
-        public string Id { get; set; }
+        public string _id { get; set; }
         public string Name { get; set; }
         public double Amount { get; set; }
         public DateTime RecurringDate { get; set; }
