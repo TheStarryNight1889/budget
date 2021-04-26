@@ -30,11 +30,9 @@ namespace api.Controllers
                 var user = await _userService.Authenticate(credentials);
 
                 var token = TokenService.CreateToken(user);
-                user.Password = "";
 
                 JObject json = new JObject
                 {
-                    ["user"] = JToken.FromObject(user),
                     ["token"] = token
                 };
                 return Ok(json);

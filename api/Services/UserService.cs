@@ -44,10 +44,13 @@ namespace api.Services
         }
         public async Task Update(string id, UserModel user)
         {
-            UserModel oldUser = await _userRepository.Get(id);
-            user.Wallets = oldUser.Wallets;
-            user.Role = "user";
-            await _userRepository.Update(id, user);
+            try
+            {
+                UserModel oldUser = await _userRepository.Get(id);
+                user.Wallets = oldUser.Wallets;
+                user.Role = "user";
+                await _userRepository.Update(id, user);
+            } catch(Exception e) { throw new Exception(); }
         }
         public async Task Remove(UserModel user)
         {

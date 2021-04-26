@@ -71,13 +71,14 @@ export default {
       try {
         await this.$http
           .post("/User", {
-            name: this.name,
-            email: this.email,
-            dob: this.dob,
-            currency: this.currency,
-            password: this.password
+            Name: this.name,
+            Email: this.email,
+            DOB: this.dob,
+            Currency: this.currency,
+            Password: this.password
           })
           .then(response => response.data);
+        this.$router.push("/login");
       } catch (err) {
         this.error = err.message;
       }

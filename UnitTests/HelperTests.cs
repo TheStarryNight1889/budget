@@ -16,7 +16,7 @@ namespace UnitTests
             user._id = "1234567891234567891234";
             user.Role = "user";
             string token = TokenService.CreateToken(user).ToString();
-            object should = token.Should().NotBeNull();
+            token.Should().NotBeNull();
         }
     }
 }

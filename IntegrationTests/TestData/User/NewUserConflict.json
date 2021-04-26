@@ -2,21 +2,20 @@
   "_id": "6075da01584e8e5f34a41261",
   "Email": "perm@123.com",
   "Name": "Test User",
-  "DOB": "2000-01-22",
+  "DOB": null,
   "Password": "test123",
-  "Currency": 1,
+  "Currency": 0,
   "Role": "user",
   "Wallets": [
     {
-      "_id": "6076c096160cfc2ca34588e8",
+      "_id": "6075f4127017be83a95d3b3c",
       "Name": "AIB Checking",
       "Type": 1,
       "Default": true,
       "Balance": 200.0,
-      "DateOffsetBalance": null,
+      "DateOffsetBalance": [],
       "Color": 0,
-      "LastUpdated": "2021-04-14",
-      "RecurringTransactionIds": []
+      "LastUpdated": null,
     }
   ],
   "TargetIds": []

@@ -17,12 +17,11 @@ namespace api.Models
         public WalletType Type { get; set; }
         public bool Default { get; set; }
         public double Balance { get; set; }
-        public Dictionary<DateTime, double> DateOffsetBalance { get; set; }
+        public List<DateOffsetBalance> DateOffsetBalance { get; set; }
         public WalletColor Color { get; set; }
         public DateTime LastUpdated { get; set; }
-        public List<string> RecurringTransactionIds { get; set; }
 
-        public WalletModel(string name, WalletType type, bool @default, double balance, Dictionary<DateTime, double> dateOffsetBalance, WalletColor color, DateTime lastUpdated)
+        public WalletModel(string name, WalletType type, bool @default, double balance, List<DateOffsetBalance> dateOffsetBalance, WalletColor color, DateTime lastUpdated)
         {
             Name = name;
             Type = type;
@@ -31,7 +30,6 @@ namespace api.Models
             DateOffsetBalance = dateOffsetBalance;
             Color = color;
             LastUpdated = lastUpdated;
-            RecurringTransactionIds = new List<string>();
         }
     }
 }

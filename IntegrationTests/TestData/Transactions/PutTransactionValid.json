@@ -1,0 +1,11 @@
+﻿{
+  "_id": "107d71daf95c47fcb04c4e19",
+  "WalletId": "6085f4127017be83a95d3b3c",
+  "UserId": "6075da01584e8e5f34a41261",
+  "Amount": 56.73,
+  "Date": "2021-04-14",
+  "Category": 1,
+  "Name": "This Got Updated",
+  "Store": "Tesco",
+  "Goods": "Food"
+}

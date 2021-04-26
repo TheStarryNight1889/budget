@@ -24,21 +24,43 @@ namespace api.Controllers
         public UserController(IHttpContextAccessor httpContextAccessor, UserService userService)
         {
             this._userService = userService;
-            this.userId = httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value.ToString();
+
+            if (httpContextAccessor.HttpContext.User.IsInRole("user"))
+                this.userId = httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value?.ToString() ?? String.Empty;
         }
 
+        [Route("")]
+        [HttpGet]
+        [Authorize(Roles = "user")]
+        public async Task<IActionResult> Get()
+        {
+            try
+            {
+                return Ok(await _userService.Get(userId));
+            }
+            catch (Exception e)
+            {
+                return NotFound();
+            }
+        }
         [HttpPost]
         [AllowAnonymous]
         public async Task<IActionResult> Post(UserModel user)
         {
-            if (!await _userService.IsEmailIsAvailable(user.Email))
+            try
             {
-                return Conflict();
-            }
-            else
+                if (!await _userService.IsEmailIsAvailable(user.Email))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    await _userService.Create(user);
+                    return Ok();
+                }
+            } catch(Exception e)
             {
-                await _userService.Create(user);
-                return Ok();
+                return BadRequest();
             }
         }
 
@@ -46,8 +68,14 @@ namespace api.Controllers
         [Authorize(Roles = "user")]
         public async Task<IActionResult> Put(UserModel user)
         {
-            await _userService.Update(this.userId, user);
-            return Ok();
+            try
+            {
+                await _userService.Update(this.userId, user);
+                return Ok();
+            } catch(Exception e)
+            {
+                return BadRequest();
+            }
         }
 
         [HttpDelete("{id}")]

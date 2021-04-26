@@ -14,10 +14,9 @@
             "Type" : 1,
             "Default" : true,
             "Balance" : 200.0,
-            "DateOffsetBalance" : null,
+            "DateOffsetBalance" : [],
             "Color" : 0,
-            "LastUpdated" : {"$date":"2021-04-13T22:41:00.000Z"},
-            "RecurringTransactionIds" : []
+            "LastUpdated" : {"$date":"2021-04-13T22:41:00.000Z"}
         },
         {
           "_id" : { "$oid":"7085f4127017be83a95d3b3c" },
@@ -25,11 +24,20 @@
           "Type" : 1,
           "Default" : true,
           "Balance" : 200.0,
-          "DateOffsetBalance" : null,
+          "DateOffsetBalance" : [],
           "Color" : 0,
-          "LastUpdated" : {"$date":"2021-04-13T22:41:00.000Z"},
-          "RecurringTransactionIds" : []
-      }
+          "LastUpdated" : {"$date":"2021-04-13T22:41:00.000Z"}
+      },
+      {
+        "_id" : { "$oid":"6085f4127017be83a95d3b3c" },
+        "Name" : "This Is Permanent for Transactions",
+        "Type" : 1,
+        "Default" : true,
+        "Balance" : 200.0,
+        "DateOffsetBalance" : [],
+        "Color" : 0,
+        "LastUpdated" : {"$date":"2021-04-13T22:41:00.000Z"}
+    }
     ],
     "TargetIds" : []
   }

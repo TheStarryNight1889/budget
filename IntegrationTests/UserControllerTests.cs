@@ -16,10 +16,17 @@ namespace IntegrationTests
     public class UserControllerTests: ControllerTestsBase 
     {
         // Data 
-        public JObject NewUserValid = JObject.Parse(File.ReadAllText(@"../../../TestData/NewUserValid.json"));
-        public JObject NewUserBadRequest = JObject.Parse(File.ReadAllText(@"../../../TestData/NewUserBadRequest.json"));
-        public JObject PutUserValid = JObject.Parse(File.ReadAllText(@"../../../TestData/PutUserValid.json"));
+        public JObject NewUserValid = JObject.Parse(File.ReadAllText(@"../../../TestData/User/NewUserValid.json"));
+        public JObject NewUserBadRequest = JObject.Parse(File.ReadAllText(@"../../../TestData/User/NewUserBadRequest.json"));
+        public JObject PutUserValid = JObject.Parse(File.ReadAllText(@"../../../TestData/User/PutUserValid.json"));
+        public JObject PutUserBadRequest = JObject.Parse(File.ReadAllText(@"../../../TestData/User/PutUserBadRequest.json"));
 
+        [Fact]
+        public async Task Get_User_OK()
+        {
+            var response = await _userClient.GetAsync(String.Format(BASE_URL, USER));
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+        }
         [Fact]
         public async Task Post_User_OK()
         {
@@ -44,5 +51,12 @@ namespace IntegrationTests
             var response = await _userClient.PutAsync(String.Format(BASE_URL, USER), new StringContent(PutUserValid.ToString(), Encoding.UTF8, "application/json"));
             response.StatusCode.Should().Be(HttpStatusCode.OK);
         }
+        [Fact]
+        public async Task Put_User_BadRequest()
+        {
+            var response = await _userClient.PutAsync(String.Format(BASE_URL, USER), new StringContent(PutUserBadRequest.ToString(), Encoding.UTF8, "application/json"));
+            response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+        }
+
     }
 }

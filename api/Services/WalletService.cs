@@ -17,30 +17,60 @@ namespace api.Services
         {
             this._userRepository = userRepository;
         }
+        public async Task<List<WalletModel>> GetWallets(string userId)
+        {
+            try
+            {
+                UserModel user = await _userRepository.Get(userId);
+                return user.Wallets;
+
+            } catch(Exception e)
+            {
+                throw new Exception();
+            }
+        }
         public async Task CreateWallet(string id, WalletModel wallet)
         {
-            UserModel User = await _userRepository.Get(id);
-            wallet.LastUpdated = DateTime.Now;
-            // the UUID is manually assigned because MongoDB will not autimatically generate ID's for sub-documents
-            wallet._id = ObjectId.GenerateNewId().ToString();
-            User.Wallets.Add(wallet);
+            try
+            {
+                UserModel User = await _userRepository.Get(id);
+                wallet.LastUpdated = DateTime.UtcNow;
+                // the UUID is manually assigned because MongoDB will not autimatically generate ID's for sub-documents
+                wallet._id = ObjectId.GenerateNewId().ToString();
+                User.Wallets.Add(wallet);
 
-            await _userRepository.Update(id, User);
+                await _userRepository.Update(id, User);
+            } catch(Exception e)
+            {
+                throw new Exception();
+            }
         }
         public async Task UpdateWallet(string id, WalletModel wallet)
         {
-            UserModel User = await _userRepository.Get(id);
+            try
+            {
+                UserModel User = await _userRepository.Get(id);
 
-            User.Wallets.Remove(User.Wallets.Where(a => a._id == wallet._id).First());
-            User.Wallets.Add(wallet);
-            await _userRepository.Update(id, User);
+                User.Wallets.Remove(User.Wallets.Where(a => a._id == wallet._id).First());
+                User.Wallets.Add(wallet);
+                await _userRepository.Update(id, User);
+            } catch(Exception e)
+            {
+                throw new Exception();
+            }
         }
         public async Task DeleteWallet(string id, string walletId)
         {
-            UserModel User = await _userRepository.Get(id);
+            try
+            {
+                UserModel User = await _userRepository.Get(id);
 
-            User.Wallets.Remove(User.Wallets.Where(a => a._id == walletId).First());
-            await _userRepository.Update(id, User);
+                User.Wallets.Remove(User.Wallets.Where(a => a._id == walletId).First());
+                await _userRepository.Update(id, User);
+            } catch(Exception e)
+            {
+                throw new Exception();
+            }
         }
     }
 }

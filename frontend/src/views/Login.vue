@@ -43,10 +43,17 @@ export default {
   methods: {
     async login() {
       try {
-        await this.$http
-          .post("/Login", { email: this.email, password: this.password })
-          .then(response => response.data);
+        var response = await this.$http.post("/Login", {
+          email: this.email,
+          password: this.password
+        });
+
+        if (response.status == 200) {
+          this.$cookies.set("token", response.data.token);
+          this.$router.push("/dashboard");
+        }
       } catch (err) {
+        console.log(err);
         this.error = err.message;
       }
     }

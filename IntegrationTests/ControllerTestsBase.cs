@@ -37,13 +37,32 @@ namespace IntegrationTests
         public const string LOGIN = "Login";
         public const string WALLET = "Wallet";
         public const string USER = "User";
+        public const string TRANSACTION = "Transaction";
+        public const string RECURRING_TRANSACTION = "RecurringTransaction";
+        public const string INCOME = "Income";
 
         // Parameters
         public const string NULL_MOD = "";
         public const string DELETE_WALLET_PARAM = "6075f4127017be83a95d3b3c";
+        public const string DELETE_WALLET_PARAM_BAD_REQUEST = "605f4127017be83a95d3b3c";
+
+        public const string DELETE_TRANSACTION_PARAM = "607d71daf95c47fcb04c4e19";
+        public const string DELETE_TRANSACTION_PARAM_NOT_FOUND = "607d71daf95c47fcg04c4e19";
+        public const string TRANSACTION_WALLET_PARAM = "6085f4127017be83a95d3b3c";
+        public const string TRANSACTION_WALLET_PARAM_NOTFOUND = "6085j4127017be83a95d3b3c";
+
+        public const string DELETE_RECURRING_TRANSACTION_PARAM = "607f0dbb93542f49047f6ec1";
+        public const string DELETE_RECURRING_TRANSACTION_PARAM_NOT_FOUND = "607h71daf95c47fcg04c4e19";
+        public const string RECURRING_TRANSACTION_WALLET_PARAM = "6085f4127017be83a95d3b3c";
+        public const string RECURRING_TRANSACTION_WALLET_PARAM_NOTFOUND = "6085j4127017be83a95d3b3c";
+
+        public const string DELETE_INCOME_PARAM = "5081931d1229115f29c03059";
+        public const string DELETE_INCOME_PARAM_NOT_FOUND = "081931d1229115f29c03059";
+        public const string INCOME_WALLET_PARAM = "6085f4127017be83a95d3b3c";
+        public const string INCOME_WALLET_PARAM_NOTFOUND = "6085j4127017be83a95d3b3c";
 
         // Data
-        public JObject LoginUserValid = JObject.Parse(File.ReadAllText(@"../../../TestData/LoginUserValid.json"));
+        public JObject LoginUserValid = JObject.Parse(File.ReadAllText(@"../../../TestData/Login/LoginUserValid.json"));
 
 
         public ControllerTestsBase()

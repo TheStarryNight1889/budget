@@ -4,7 +4,7 @@
   "Type": 1,
   "Default": true,
   "Balance": 200.0,
-  "DateOffsetBalance": null,
+  "DateOffsetBalance": [],
   "Color": 0,
   "LastUpdated": "2021-04-13T22:41:00.000Z" ,
   "RecurringTransactionIds": []

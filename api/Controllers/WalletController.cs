@@ -15,21 +15,47 @@ namespace api.Controllers
     [ApiController]
     public class WalletController : ControllerBase
     {
-        private readonly WalletService _accountService;
+        private readonly WalletService _walletService;
         private string userId;
         public WalletController(IHttpContextAccessor httpContextAccessor, WalletService accountService)
         {
-            this._accountService = accountService;
+            this._walletService = accountService;
             this.userId = httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value.ToString();
         }
 
+        [Route("")]
+        [HttpGet]
+        [Authorize(Roles = "user")]
+        public async Task<IActionResult> GetWallets()
+        {
+            try
+            {
+                return Ok(await _walletService.GetWallets(userId));
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+
+        }
         [Route("")]
         [HttpPost]
         [Authorize(Roles = "user")]
         public async Task<IActionResult> PostWallet(WalletModel wallet)
         {
-            await _accountService.CreateWallet(userId, wallet);
-            return Ok();
+            try
+            {
+                if (wallet.Name == null)
+                    throw new NullReferenceException();
+
+                wallet.DateOffsetBalance = new List<DateOffsetBalance>();
+                await _walletService.CreateWallet(userId, wallet);
+                return Ok();
+            } catch(Exception e)
+            {
+                return BadRequest();
+            }
+
         }
 
         [Route("{walletId}")]
@@ -37,8 +63,15 @@ namespace api.Controllers
         [Authorize(Roles = "user")]
         public async Task<IActionResult> DeleteWallet([FromRoute] string walletId)
         {
-            await _accountService.DeleteWallet(userId, walletId);
-            return Ok();
+            try
+            {
+                await _walletService.DeleteWallet(userId, walletId);
+                return Ok();
+            } catch(Exception e)
+            {
+                return BadRequest();
+            }
+
         }
 
         [Route("")]
@@ -46,8 +79,16 @@ namespace api.Controllers
         [Authorize(Roles = "user")]
         public async Task<IActionResult> UpdateWallet(WalletModel wallet)
         {
-            await _accountService.UpdateWallet(userId, wallet);
-            return Ok();
+            try
+            {
+                if (wallet._id == null)
+                    throw new NullReferenceException();
+                await _walletService.UpdateWallet(userId, wallet);
+                return Ok();
+            } catch(Exception e)
+            {
+                return BadRequest();
+            }
         }
     }
 }

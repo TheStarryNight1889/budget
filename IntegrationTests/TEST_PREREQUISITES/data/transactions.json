@@ -1,0 +1,24 @@
+[
+    {
+        "_id" : { "$oid":"607d71daf95c47fcb04c4e19"},
+        "UserId" : "6075da01584e8e5f34a41261",
+        "WalletId" : "6085f4127017be83a95d3b3c",
+        "Amount" : 56.73,
+        "Date" : {"$date":"2021-04-13T23:00:00.000Z"},
+        "Category" : 1,
+        "Name" : "To Be Deleted",
+        "Store" : "Tesco",
+        "Goods" : "Food"
+    },
+    {
+        "_id" : { "$oid":"107d71daf95c47fcb04c4e19"},
+        "UserId" : "6075da01584e8e5f34a41261",
+        "WalletId" : "6085f4127017be83a95d3b3c",
+        "Amount" : 56.73,
+        "Date" : {"$date":"2021-04-13T23:00:00.000Z"},
+        "Category" : 1,
+        "Name" : "To Be Updated",
+        "Store" : "Tesco",
+        "Goods" : "Food"
+    }
+]

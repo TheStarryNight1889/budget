@@ -12,6 +12,8 @@ namespace api.Models
         [BsonId]
         [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
         public string _id { get; set; }
+        public string UserId { get; set; }
+        public string WalletId { get; set; }
         public double Amount { get; set; }
         public DateTime Date { get; set; }
         public TransactionCategory Category { get; set; }
@@ -19,8 +21,10 @@ namespace api.Models
         public string Store { get; set; }
         public string Goods { get; set; }
 
-        public TransactionModel(double amount, DateTime date, TransactionCategory category, string name, string store, string goods)
+        public TransactionModel(string userId, string walletId, double amount, DateTime date, TransactionCategory category, string name, string store, string goods)
         {
+            UserId = userId;
+            WalletId = walletId;
             Amount = amount;
             Date = date;
             Category = category;

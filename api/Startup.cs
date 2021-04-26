@@ -46,7 +46,7 @@ namespace api
                 options.AddPolicy(name: MyAllowSpecificOrigins,
                     builder =>
                     {
-                        builder.WithOrigins("http://localhost:8080").AllowAnyHeader().AllowAnyMethod().AllowCredentials();
+                        builder.WithOrigins("http://localhost:8080", "https://localhost:8080").AllowAnyHeader().AllowAnyMethod().AllowCredentials();
                     });
             });
             // requires using Microsoft.Extensions.Options
@@ -57,9 +57,15 @@ namespace api
 
             services.AddSingleton<UserService>();
             services.AddSingleton<WalletService>();
+            services.AddSingleton<TransactionService>();
+            services.AddSingleton<IncomeService>();
+            services.AddSingleton<RecurringTransactionService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
+            services.AddTransient<IRecurringTransactionRepository, RecurringTransactionRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IIncomeRepository, IncomeRepository>();
+            services.AddTransient<ITransactionsRepository, TransactionRepository>();
             services.AddControllers().AddNewtonsoftJson();
             services.AddSwaggerGen(c =>
             {

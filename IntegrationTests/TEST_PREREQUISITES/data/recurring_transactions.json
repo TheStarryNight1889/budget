@@ -1,0 +1,22 @@
+[
+    {
+        "_id" : { "$oid":"607f0dbb93542f49047f6ec1"},
+        "UserId" : "6075da01584e8e5f34a41261",
+        "WalletId" : "6085f4127017be83a95d3b3c",
+        "Name" : "To be Deleted",
+        "Amount" : 9.99,
+        "BillingDate" : 27,
+        "Category" : 2,
+        "Type" : 0
+    },
+    {
+        "_id" : { "$oid":"507f0dbb93542f49047f6ec1"},
+        "UserId" : "6075da01584e8e5f34a41261",
+        "WalletId" : "6085f4127017be83a95d3b3c",
+        "Name" : "To be Updated",
+        "Amount" : 9.99,
+        "BillingDate" : 27,
+        "Category" : 2,
+        "Type" : 0
+    }
+]
